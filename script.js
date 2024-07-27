@@ -15,31 +15,34 @@ function getComputerChoice() {
     let randomChoice = Math.random();
 
         if (randomChoice <= 0.333) {
-            return "Rock";
+            return "rock";
         }
         else if  (randomChoice<= 0.666) {
-            return "Paper"
+            return "paper"
         }
         else {
-            return "Scissors"
+            return "scissors"
         }
 }
 
 /*Create function getHumanChoice which prompts the user to enter a Rock. Paper, or Scissor string. Use swtich
 statement so that if input is not given the strings Rock, Paper, or Scissors, the string "WRONG INPUT!!!" will
-be shown on the viewport. If the input is either one of the strings Rock. Paper, or Scissor, return the input value
+be shown on the viewport. If the input is either one of the strings Rock. Paper, or Scissor, return the input value.
+Make prompt case insensitive by putting the method .toLowerCase(); after the prompt message and making
+the case strings lowercase.
 */
 function gethumanChoice() {
-    let input = prompt("Rock, Paper, or Scissors??? ")
+    let input = prompt("Rock, Paper, or Scissors??? ").toLowerCase();
 
     switch (input) {
-        case "Rock":
-        case "Paper":
-        case "Scissors":
-            return input.toLowerCase();
+        case "rock":
+        case "paper":
+        case "scissors":
+            return input;
         
         default:
             alert("WRONG INPUT!!");
+            return gethumanChoice(); //use this to call the gethumanfunction if the input is incorrect
     }
 }
 
@@ -53,7 +56,10 @@ function playGame() {
     /*Create playRound function that takes the parameters humanChoice and computerChoice and make their
     arguments be equal to the values of functions gethumanChoice and getComputerChoice by creating
     the variables humanSelection and computerSelection. Then create if statements that increments the value
-    of humanScore or ComputerScore depending on who wins the round and print a message to the console. 
+    of humanScore or ComputerScore depending on who wins the round and print a message to the console.
+    Afterwards call the playRound function 5 times in the playGame function so game runs 5 times, and create
+    an if statement that prints a message depending on who is the winner of the 5 rounds. Finally, call the playGame
+    function. 
     */
     function playRound(humanChoice, computerChoice) {
     
@@ -61,44 +67,52 @@ function playGame() {
                 console.log("Wait... this cant be... Ladies and gentlemen we have a DRAW!")
              }
     
-             if (humanChoice === "Rock" && computerChoice === "Paper") {
+             if (humanChoice === "rock" && computerChoice === "paper") {
                 console.log("LOL the computer wins this round") 
-               return ++computerScore;
+                computerScore++;
             }
-            else if (humanChoice === "Rock" && computerChoice === "Scissors") {
+            else if (humanChoice === "rock" && computerChoice === "scissors") {
                 console.log("Alright one point for you silly human ");
-                return ++humanScore;
+                humanScore++;
             }
-            else if (humanChoice === "Scissors" && computerChoice=== "Rock") {
+            else if (humanChoice === "scissors" && computerChoice=== "rock") {
                 console.log("The computer hath prevailed")
-                return ++computerScore;
+                computerScore++;
             }
-            else if (humanChoice === "Scissors" && computerChoice === "Paper") {
+            else if (humanChoice === "scissors" && computerChoice === "paper") {
                 console.log("Why is the computer letting the human win?") 
-               return ++humanScore;
+                humanScore++;
             }
-            else if (humanChoice === "Paper" && computerChoice=== "Scissors") {
+            else if (humanChoice === "paper" && computerChoice=== "scissors") {
                 console.log("The computer is so much smarter than the human lol. 1 point for computer");
-                return ++computerScore;
+               computerScore++;
             }
-            else {
+            else if (humanChoice === "paper" && computerChoice === "rock") {
                 console.log("Are you kidding me? Somehow 1 point for human! ")
-                return ++humanScore;
+                humanScore++;
             }
         }
 
-        const humanSelection = gethumanChoice();
-        const computerSelection = getComputerChoice();
+    const humanSelection = gethumanChoice;
+    const computerSelection = getComputerChoice;
 
-        playRound(humanSelection, computerSelection);
-        playRound(humanSelection, computerSelection);
-        playRound(humanSelection, computerSelection);
-        playRound(humanSelection, computerSelection);
-        playRound(humanSelection, computerSelection);
-           
+    playRound(humanSelection(), computerSelection());
+    playRound(humanSelection(), computerSelection());
+    playRound(humanSelection(), computerSelection());
+    playRound(humanSelection(), computerSelection());
+    playRound(humanSelection(), computerSelection());
+    
+    
+    if (humanScore > computerScore) {
+        console.log("I can't believe im saying this but the human has won!") 
     }
+    else  {
+        console.log("The computer won! As expected")
+    }
+}
 
 playGame();
+
     
 
 
