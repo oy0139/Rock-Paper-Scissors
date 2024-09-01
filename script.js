@@ -95,18 +95,16 @@ function playGame() {
 
     const humanSelection = gethumanChoice;
     const computerSelection = getComputerChoice;
+    
+    while (humanScore < 5 && computerScore < 5) {
+        playRound(humanSelection(), computerSelection());
+    }
 
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
     
-    
-    if (humanScore > computerScore) {
+    if (humanScore > computerScore && humanScore == 5) {
         console.log("I can't believe im saying this but the human has won!") 
     }
-    else  {
+    else if (computerScore > humanScore && computerScore == 5 )  {
         console.log("The computer won! As expected")
     }
 }
