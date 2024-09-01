@@ -1,2 +1,2 @@
 # Rock-Paper-Scissors
-First javascript project
+First javascript project, revisited
