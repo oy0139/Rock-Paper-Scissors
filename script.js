@@ -31,7 +31,7 @@ be shown on the viewport. If the input is either one of the strings Rock. Paper,
 Make prompt case insensitive by putting the method .toLowerCase(); after the prompt message and making
 the case strings lowercase.
 */
-function gethumanChoice() {
+/*function gethumanChoice() {
     let input = prompt("Rock, Paper, or Scissors??? ").toLowerCase();
 
     switch (input) {
@@ -44,14 +44,27 @@ function gethumanChoice() {
             alert("WRONG INPUT!!");
             return gethumanChoice(); //use this to call the gethumanfunction if the input is incorrect
     }
-}
+}*/
 
-/*Create playGame function that declares humanScore and computerScore variables and initializes them with 
-0 and calls the function playRound 5 times*/
+const rock = document.querySelector("#rock")
+rock.addEventListener("click", () => playRound('rock'))
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+const paper = document.querySelector("#paper")
+paper.addEventListener("click", () => playRound('paper'))
+
+const scissors = document.querySelector("#scissors")
+scissors.addEventListener("click", () => playRound('scissors'))
+
+const result = document.querySelector("#result")
+const score = document.querySelector("#score")
+
+const winner = document.querySelector("#winner")
+
+result.textContent = "Result :"
+winner.textContent = "TBD"
+
+humanScore = 0;
+computerScore = 0;
     
     /*Create playRound function that takes the parameters humanChoice and computerChoice and make their
     arguments be equal to the values of functions gethumanChoice and getComputerChoice by creating
@@ -61,59 +74,55 @@ function playGame() {
     an if statement that prints a message depending on who is the winner of the 5 rounds. Finally, call the playGame
     function. 
     */
-    function playRound(humanChoice, computerChoice) {
-    
+function playRound(humanChoice) {
+
+            let computerChoice = getComputerChoice();
+
             if (humanChoice === computerChoice) {
-                console.log("Wait... this cant be... Ladies and gentlemen we have a DRAW!")
+                result.textContent = "Wait... this cant be... Ladies and gentlemen we have a DRAW!"
              }
     
              if (humanChoice === "rock" && computerChoice === "paper") {
-                console.log("LOL the computer wins this round") 
+                result.textContent = "LOL the computer wins this round"
                 computerScore++;
+                
             }
             else if (humanChoice === "rock" && computerChoice === "scissors") {
-                console.log("Alright one point for you silly human ");
+                result.textContent = "Alright one point for you silly human";
                 humanScore++;
+                
             }
             else if (humanChoice === "scissors" && computerChoice=== "rock") {
-                console.log("The computer hath prevailed")
+                result.textContent = "The computer hath prevailed";
                 computerScore++;
+                
             }
             else if (humanChoice === "scissors" && computerChoice === "paper") {
-                console.log("Why is the computer letting the human win?") 
+                result.textContent  = "Why is the computer letting the human win?";
                 humanScore++;
+                
             }
             else if (humanChoice === "paper" && computerChoice=== "scissors") {
-                console.log("The computer is so much smarter than the human lol. 1 point for computer");
+                result.textContent = "The computer is so much smarter than the human lol. 1 point for computer";
                computerScore++;
             }
             else if (humanChoice === "paper" && computerChoice === "rock") {
-                console.log("Are you kidding me? Somehow 1 point for human! ")
+                result.textContent = "Are you kidding me? Somehow 1 point for human!"
                 humanScore++;
             }
+            
+        score.textContent = `Human: ${humanScore} - Computer: ${computerScore}`;
+
+        if (humanScore > computerScore && humanScore == 5) {
+            result.textContent = "I can't believe im saying this but the human has won!"
+            winner.textContent = "Human!"
+    
         }
-
-    const humanSelection = gethumanChoice;
-    const computerSelection = getComputerChoice;
-
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
-    playRound(humanSelection(), computerSelection());
-    
-    
-    if (humanScore > computerScore) {
-        console.log("I can't believe im saying this but the human has won!") 
+        else if (computerScore > humanScore && computerScore == 5 )  {
+            result.textContent = "The computer won! As expected"
+            winner.textContent = "Computer!"
+        }
+            
     }
-    else  {
-        console.log("The computer won! As expected")
-    }
-}
-
-playGame();
-
-    
-
 
 
