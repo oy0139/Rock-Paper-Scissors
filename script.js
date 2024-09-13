@@ -58,8 +58,10 @@ scissors.addEventListener("click", () => playRound('scissors'))
 const result = document.querySelector("#result")
 const score = document.querySelector("#score")
 
+const winner = document.querySelector("#winner")
+
 result.textContent = "Result :"
-score.textContent = "Score :"
+winner.textContent = "TBD"
 
 humanScore = 0;
 computerScore = 0;
@@ -78,48 +80,49 @@ function playRound(humanChoice) {
 
             if (humanChoice === computerChoice) {
                 result.textContent = "Wait... this cant be... Ladies and gentlemen we have a DRAW!"
-                score.textContent += 1
              }
     
              if (humanChoice === "rock" && computerChoice === "paper") {
                 result.textContent = "LOL the computer wins this round"
                 computerScore++;
-                score.textContent += 1
+                
             }
             else if (humanChoice === "rock" && computerChoice === "scissors") {
                 result.textContent = "Alright one point for you silly human";
                 humanScore++;
-                score.textContent += 1
+                
             }
             else if (humanChoice === "scissors" && computerChoice=== "rock") {
                 result.textContent = "The computer hath prevailed";
                 computerScore++;
-                score.textContent += 1
+                
             }
             else if (humanChoice === "scissors" && computerChoice === "paper") {
                 result.textContent  = "Why is the computer letting the human win?";
                 humanScore++;
-                score.textContent += 1
+                
             }
             else if (humanChoice === "paper" && computerChoice=== "scissors") {
                 result.textContent = "The computer is so much smarter than the human lol. 1 point for computer";
                computerScore++;
-               score.textContent += 1
             }
             else if (humanChoice === "paper" && computerChoice === "rock") {
                 result.textContent = "Are you kidding me? Somehow 1 point for human!"
                 humanScore++;
-                score.textContent += 1
             }
-        }
+            
+        score.textContent = `Human: ${humanScore} - Computer: ${computerScore}`;
 
-    if (humanScore > computerScore && humanScore == 5) {
-        result.textContent = "I can't believe im saying this but the human has won!"
-    }
-    else if (computerScore > humanScore && computerScore == 5 )  {
-        result.textContent = "The computer won! As expected"
-    }
+        if (humanScore > computerScore && humanScore == 5) {
+            result.textContent = "I can't believe im saying this but the human has won!"
+            winner.textContent = "Human!"
     
-
+        }
+        else if (computerScore > humanScore && computerScore == 5 )  {
+            result.textContent = "The computer won! As expected"
+            winner.textContent = "Computer!"
+        }
+            
+    }
 
 
